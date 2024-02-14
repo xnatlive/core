@@ -1,0 +1,52 @@
+
+@font-face {
+    font-family: 'yekan';
+    src:url('fonts/BYekan.eot') format('eot'),    
+          url('fonts/BYekan.woff') format('woff'),
+          url('fonts/BYekan.ttf') format('truetype'); 
+}
+@font-face {
+    font-family: 'baran';
+    src:url('fonts/BBaran.eot') format('eot'),    
+          url('fonts/BBaran.woff') format('woff'),
+          url('fonts/BBaran.ttf') format('truetype'); 
+}
+@font-face {
+    font-family: 'mitra';
+    src:url('fonts/BMitra.eot') format('eot'),    
+          url('fonts/BMitra.woff') format('woff'),
+          url('fonts/BMitra.ttf') format('truetype'); 
+}
+
+body{
+    background-color: rgb(235, 235, 235);
+
+    font-family: 'yekan';
+
+}
+.clientArea {
+
+    background-color: rgb(162, 212, 240);
+
+}
+
+.nav-item a {
+    text-decoration: none;
+    color: gray;
+
+}
+
+
+.page-item  a , .page-link {
+    text-decoration: none;
+    color: white;
+    background-color: rgb(44, 44, 44);
+
+}
+.page-item a:hover , .page-link:hover{ 
+    text-decoration: none;
+    color: rgb(150, 150, 150);
+    background-color: rgb(44, 44, 44);
+
+}
+
