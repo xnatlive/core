@@ -18,35 +18,4 @@
           url('fonts/BMitra.ttf') format('truetype'); 
 }
 
-body{
-    background-color: rgb(235, 235, 235);
-
-    font-family: 'yekan';
-
-}
-.clientArea {
-
-    background-color: rgb(162, 212, 240);
-
-}
-
-.nav-item a {
-    text-decoration: none;
-    color: gray;
-
-}
-
-
-.page-item  a , .page-link {
-    text-decoration: none;
-    color: white;
-    background-color: rgb(44, 44, 44);
-
-}
-.page-item a:hover , .page-link:hover{ 
-    text-decoration: none;
-    color: rgb(150, 150, 150);
-    background-color: rgb(44, 44, 44);
-
-}
 
