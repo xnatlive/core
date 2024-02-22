@@ -1,0 +1,14 @@
+{%extends 'base.html' %}
+
+
+<!-- add_customer.html -->
+
+{% block content %}
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input class="btn btn-success" type="submit" value="Add Customer">
+</form>
+
+{% endblock %}
