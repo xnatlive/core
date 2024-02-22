@@ -19,11 +19,7 @@
     <script src="{% static 'js/scripts.js' %}"></script>
 
 </head>
-{% if user.is_authenticated  %}
 
-{% else %}
-
-{% endif %}
 <body class="home">
     <div class="container-fluid display-table">
         <div class="row display-table-row">
@@ -34,19 +30,9 @@
                 </div>
                 <div class="navi vh-100">
 
-                    {% block sidemenu %}
+                    {%include 'sidebar.html'%}
 
-
-                    {% endblock %}
-                
-                    <ul>
-                        <li class="active"><a href="#"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Home</span></a></li>
-                        <li><a href="#"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Workflow</span></a></li>
-                        <li><a href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Statistics</span></a></li>
-                        <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Calender</span></a></li>
-                        <li><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Users</span></a></li>
-                        <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Setting</span></a></li>
-                    </ul>
+  
                 </div>
             </div>
             <div class="col-md-10 col-sm-11 display-table-cell v-align p-0 ">

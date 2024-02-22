@@ -1,0 +1,21 @@
+
+    
+
+
+
+
+<ul>
+    <li class="{% if request.path == '/accounts/profile/' %} active {% endif %}"><a href="{% url 'dashboard' %}"><i class="fa fa-home fa-xl"  aria-hidden="true"></i><span class="mx-2 hidden-xs hidden-sm">میز کار</span></a></li>
+    <li><a href="#"><i class="fa fa-tasks fa-xl" aria-hidden="true"></i><span class="hidden-xs hidden-sm mx-2">لیست کار ها</span></a></li>
+    <li><a href="#"><i class="fa fa-bar-chart fa-xl" aria-hidden="true"></i><span class="hidden-xs hidden-sm mx-2">Statistics</span></a></li>
+    <li><a href="#"><i class="fa fa-user fa-xl" aria-hidden="true"></i><span class="hidden-xs hidden-sm mx-2">Calender</span></a></li>
+    <li class = "{% if request.path == '/customers/' %} active {% endif %}" ><a href="{% url 'customers' %}"><i class="fa fa-calendar fa-xl" aria-hidden="true"></i><span class="hidden-xs hidden-sm mx-2">مشتریان</span></a></li>
+    <li><a href="#"><i class="fa fa-cog fa-xl" aria-hidden="true"></i><span class="hidden-xs hidden-sm mx-2">Setting</span></a></li>
+    
+    {% if  user.is_authenticated  %}
+    <li><a href="{% url 'logout' %}"><i class="fa fa-sign-out fa-xl" aria-hidden="true"></i><span class="mx-2 hidden-xs hidden-sm">خروج</span></a></li>
+    {% endif %}
+</ul>
+
+
+
