@@ -1,14 +1,63 @@
-{%extends 'base.html' %}
+{% extends 'base.html' %}
+
+<!-- {% load crispy_forms_tags %} -->
 
 
 <!-- add_customer.html -->
 
 {% block content %}
+<div class="row justify-content-center">
+  <div class="col-auto">
+    <div class="card" style="width: 50rem;">
+      <div class="card-header bg-primary text-white  ">
+        <h3>افزودن مشتری حقیقی </h3>
 
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <input class="btn btn-success" type="submit" value="Add Customer">
-</form>
+      </div>
+      <div class="card-body">
+        <form method="post">
+          {% csrf_token %}
+
+
+          <div class="row">
+            <div class="col">
+              {{ form.name.label_tag }} {{ form.name }}
+            </div>
+            <div class="col">
+              {{ form.family.label_tag }} {{ form.family }}
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col">
+              {{ form.nID.label_tag }} {{ form.nID }}
+            </div>
+            <div class="col">
+              {{ form.career.label_tag }} {{ form.career }}
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col">
+              {{ form.mobile.label_tag }} {{ form.mobile }}
+            </div>
+            <div class="col">
+              {{ form.tel.label_tag }} {{ form.tel }}
+            </div>
+          </div>
+          {{ form.address.label_tag }} {{ form.address }}
+          <br>
+          {{ form.note.label_tag }} {{ form.note }}
+
+          <br>
+          <input class="btn btn-success" type="submit" value="Add Customer">
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>
+
 
 {% endblock %}

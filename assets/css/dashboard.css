@@ -1,5 +1,9 @@
 /*Main CSS*/
 
+body {
+    font-family: 'yekan', sans-serif;
+}
+  
 /*Home Page*/
 
 .home {

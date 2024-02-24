@@ -11,13 +11,18 @@
     <title>Dashboard - SB Admin</title>
     <link href="{% static 'css/bootstrap.rtl.min.css' %}" rel="stylesheet">
 
- <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
 
 
     <script src="{% static 'js/all.min.js' %}" crossorigin="anonymous"> </script>
-    
-    <script src="{% static 'js/scripts.js' %}"></script>
 
+    <script src="{% static 'js/scripts.js' %}"></script>
+    <style>
+        body {
+            font-family: 'yekan', sans-serif;
+        }
+    </style>
 </head>
 
 <body class="home">
@@ -25,33 +30,38 @@
         <div class="row display-table-row">
             <div class="col-xl-2 col-md-3 col-sm-1 hidden-xs display-table-cell v-align box " id="navigation">
                 <div class="logo">
-                    <a hef="home.html"><img src="{% static 'images/logo.svg' %}" alt="sarafi_logo" class="hidden-xs hidden-sm">
+                    <a hef="home.html"><img src="{% static 'images/logo.svg' %}" alt="sarafi_logo"
+                            class="hidden-xs hidden-sm">
                     </a>
                 </div>
                 <div class="navi vh-100">
 
                     {%include 'sidebar.html'%}
 
-  
+
                 </div>
             </div>
             <div class="col-xl-10 col-md-9 col-sm-11 display-table-cell v-align p-0 ">
-                 <nav class="navbar navbar-light navbar-expand-md py-3">
+                <nav class="navbar navbar-light navbar-expand-md py-3">
                     <div class="container">
                         <div class="collapse navbar-collapse flex-grow-0 order-md-first" id="navcol-4">
                             <ul class="navbar-nav me-auto">
                                 <li class="nav-item">{{user.get_full_name}}</li>
                                 <li class="nav-item"><a class="nav-link" href="#">Second Item</a></li>
                             </ul>
-                            <div class="d-md-none my-2"><button class="btn btn-light me-2" type="button">Button</button><button class="btn btn-primary" type="button">Button</button></div>
+                            <div class="d-md-none my-2"><button class="btn btn-light me-2"
+                                    type="button">Button</button><button class="btn btn-primary"
+                                    type="button">Button</button></div>
                         </div>
-                        <div class="d-none d-md-block"><button class="btn btn-light me-2" type="button">Button</button><a class="btn btn-primary" role="button" href="#">Button</a></div>
+                        <div class="d-none d-md-block"><button class="btn btn-light me-2"
+                                type="button">Button</button><a class="btn btn-primary" role="button"
+                                href="#">Button</a></div>
                     </div>
                 </nav>
                 <div class="user-dashboard container">
-                {% block content %}
+                    {% block content %}
 
-                {% endblock %}
+                    {% endblock %}
                 </div>
             </div>
         </div>
