@@ -1,0 +1,166 @@
+{%extends 'base.html'%}
+
+
+{% block content %}
+
+<h2>لیست حقوقی (شرکتها) </h2>
+
+
+<div class="container">
+
+<a href="{% url 'add_company' %}" class="btn btn-primary"> <i class="fa fa-user-plus"></i> افزودن مشتری جدید</a>
+<br>
+{% if page_obj %}
+
+
+<br>
+
+<form>
+  <div class="input-group mb-2 mr-sm-2">
+    <div class="input-group-prepend">
+      
+        <button class="btn btn-success input-group-text"  type="submit">جستجو  <i class="fa fa-search"></i></button>
+    
+    </div>
+
+    <input class="form-control" id="inlineFormInputGroupUsername2" placeholder="نام٬ نام خانوادگی٬ شماره موبایل "  name="search" value="{{ request.GET.search }}">
+  
+  </div>
+ 
+  
+</form>
+
+
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+<th style="width: 30%;">نام شرکت</th>
+<th> مدیرعامل</th>
+<th>حوضه فعالیت</th>
+
+<th>موبایل</th>
+<th>تلفن</th>
+<th>ویرایش</th>
+</tr>
+</thead>
+<tbody>
+  {% for company in page_obj %}
+
+  <tr>
+    <td>{{ company.name }} </td>
+    <td>{{ company.ceoName}}</td>
+    <td>{{ company.career }}</td>
+    <td>{{ company.tel }}</td>
+    <td>{{ company.mobile }}</td>
+   
+    <td>
+
+      <button type="button" class="btn  me-1 py-0 px-1" href="{% url 'view_company' company.id   %}" 
+            data-bs-toggle ="modal"  data-bs-target="#myModal{{customer.id}}" > <i class="fa fa-eye fa-lg text-secondary "></i></button>
+          <!---Modale customer edit-->
+          <div class="modal" id="myModal{{customer.id}}" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">مشتری حقیقی: {{ company.name }}</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"></span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <ul class="list-unstyled">
+                    <li>نام شرکت: {{customer.name}} </li>
+                    <li>کد ملی: {{company.nID}}</li>
+                    <li>نام مدیر عامل: {{company.ceoName}} </li>
+                    <li>حوضه فعالیت: {{company.career}}</li>
+                    
+                    <li>موبایل: {{company.mobile}}</li>
+                    <li>تلفن: {{company.tel}}</li>
+                    <li>آدرس: {{company.address}}</li>
+                    <li>توضیحات: {{company.note}}</li>
+                    
+                  </ul>
+                
+
+                  
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">بستن</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end modal-->
+          <a class="btn  me-1 py-0 px-1" href="{% url 'edit_company' company.id  %}" > <i class="fa fa-edit fa-lg text-warning "></i></a>
+          
+          
+          <button type="button" class="btn me-1 py-0 px-1"  data-bs-toggle="modal" data-bs-target="#delete{{company.id}}"> <i class="fa fa-trash fa-lg text-danger "></i></button>
+      
+          <!--modal delete-->
+          <div class="modal" id="delete{{company.id}}" tabindex="-1" aria-labelledby="myModalLabel2" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">مشتری حقیقی: {{ company.name }} </h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"></span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <h5>آیا مطمئن هستید که شرکت زیر را حذف کنید ؟ </h5>
+                  <ul class="list-unstyled">
+                    <li>نام شرکت: {{company.name}}</li>
+                    <li>شناسه ملی: {{company.nID}}</li>                  
+                  </ul>
+                
+
+                  
+                </div>
+                <div class="modal-footer">
+                  <form action="{% url 'delete_company' company.id %}" method="post">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-danger">حذف</button>
+
+                  </form>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">بستن</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end modal-->
+    </td>
+
+
+  </tr>
+
+
+
+
+
+
+
+  {% endfor %}
+</tbody>
+{% if page_obj.has_other_pages %}
+<ul class="pagination">
+  {% for page in page_obj.paginator.page_range %}
+    <li><a href="?page={{ page }}">{{ page }}</a></li>
+  {% endfor %}
+</ul>
+{% endif %}
+</div>
+{%else%}
+<br>
+<div class="custom-modal  mx-auto my-5">
+  <div class="danger danger-animation icon-top"><i class="fa fa-times"></i></div>
+  <div class="danger border-bottom"></div>
+  <div class="content">
+      <p class="message-type">شرکتی پیدا نشد </p>
+  </div>
+</div>
+{%endif%}
+
+
+</div>
+{% endblock %}

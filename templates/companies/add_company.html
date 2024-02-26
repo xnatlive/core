@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+<!-- {% load crispy_forms_tags %} -->
+
+
+<!-- add_customer.html -->
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-auto">
+    <div class="card" style="width: 50rem;">
+      <div class="card-header bg-primary text-white  ">
+        <h3><i class="fa fa-user-plus mx-2 "></i>افزودن مشتری حقوقی (شرکت)  </h3>
+
+      </div>
+      <div class="card-body">
+
+        {%if success %}
+
+        <div class="custom-modal mx-auto">
+          <div class="succes succes-animation icon-top"><i class="fa fa-check"></i></div>
+          <div class="succes border-bottom"></div>
+          <div class="content">
+            <p class="type"> شرکت جدید  </p>
+            <p class="message-type">با موفقیت ثبت شد </p>
+          </div>
+        </div>
+
+        <a class="btn btn-danger"   href="{% url 'companies' %}"> بازگشت </a>
+
+        {%else%}
+
+
+        <form method="post">
+          {% csrf_token %}
+
+
+          <div class="row">
+            <div class="col">
+              {{ form.name.label_tag }} {{ form.name }}
+            </div>
+            <div class="col">
+              {{ form.nID.label_tag }} {{ form.nID }}
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col">
+              {{ form.ceoName.label_tag }} {{ form.ceoName }}
+            </div>
+            <div class="col">
+              {{ form.career.label_tag }} {{ form.career }}
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col">
+              {{ form.mobile.label_tag }} {{ form.mobile }}
+            </div>
+            <div class="col">
+              {{ form.tel.label_tag }} {{ form.tel }}
+            </div>
+          </div>
+          {{ form.address.label_tag }} {{ form.address }}
+          <br>
+          {{ form.note.label_tag }} {{ form.note }}
+
+          <br>
+          <input class="btn btn-success" type="submit" value="افزودن مشتری حقوقی ">
+          <a class="btn btn-danger"   href="{% url 'companies' %}"> بازگشت </a>
+
+        </form>
+      {%endif%}
+      </div>
+    </div>
+
+  </div>
+
+
+</div>
+
+
+{% endblock %}

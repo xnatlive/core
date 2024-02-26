@@ -8,9 +8,9 @@ class Company(models.Model):
     ceoName = models.CharField(max_length =40,null=True)
     career = models.CharField(max_length =40)
     mobile = models.CharField(max_length =12)
-    tel =models.CharField(max_length =12,null=True)
+    tel =models.CharField(max_length =12,null=True,blank=True)
     address =models.TextField(null=True)
-    note = models.TextField(null=True)
+    note = models.TextField(null=True,blank=True)
     def __str__(self):
         return self.name
 
@@ -20,9 +20,9 @@ class Customer(models.Model):
     nID = models.CharField(max_length =12)
     career = models.CharField(max_length =40)
     mobile = models.CharField(max_length =12)
-    tel =models.CharField(max_length =12,null=True)
+    tel =models.CharField(max_length =12,null=True,blank=True)
     address =models.TextField(null=True)
-    note = models.TextField(null=True)
+    note = models.TextField(null=True,blank=True)
     def __str__(self):
         return self.name
     

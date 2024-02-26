@@ -1,0 +1,177 @@
+{%extends 'base.html'%}
+
+
+{% block content %}
+<h2> مشتریان حقیقی</h2>
+<div class="container">
+
+  
+
+  <div class="py-3">
+  <a href="{% url 'add_customer' %}" class="btn btn-primary"> <i class="fa fa-user-plus"></i> افزودن مشتری جدید</a>
+</div>
+</div>
+<div class="card">
+  <div class="card-header">
+    <i class="fa fa-list"></i>
+  لیست مشتریان حقیقی
+
+  </div>
+  <div class="card-body">
+
+
+
+    {% if page_obj %}
+    
+
+    
+    <form>
+      <div class="input-group mb-2 mr-sm-2">
+        <div class="input-group-prepend">
+          
+            <button class="btn btn-success input-group-text"  type="submit">جستجو  <i class="fa fa-search"></i></button>
+        
+        </div>
+    
+        <input class="form-control" id="inlineFormInputGroupUsername2" placeholder="نام٬ نام خانوادگی٬ شماره موبایل "  name="search" value="{{ request.GET.search }}">
+      
+      </div>
+     
+      
+    </form>
+    
+    
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+    <th>نام مشتری</th>
+    <th>حوضه فعالیت</th>
+    
+    <th>موبایل</th>
+    <th>تلفن</th>
+    <th>ویرایش</th>
+    </tr>
+    </thead>
+    <tbody>
+      {% for customer in page_obj %}
+    
+      <tr>
+        <td>{{ customer.name }} {{customer.family}}</td>
+        <td>{{ customer.career }}</td>
+        <td>{{ customer.tel }}</td>
+        <td>{{ customer.mobile }}</td>
+        <td>
+          
+          <button type="button" class="btn  me-1 py-0 px-1" href="{% url 'view_customer' customer.id   %}" 
+            data-bs-toggle ="modal"  data-bs-target="#myModal{{customer.id}}" > <i class="fa fa-eye fa-lg text-secondary "></i></button>
+          <!---Modale customer edit-->
+          <div class="modal" id="myModal{{customer.id}}" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">مشتری حقیقی: {{ customer.name }} {{customer.family}} </h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"></span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <ul class="list-unstyled">
+                    <li>نام مشتری: {{customer.name}} {{customer.family}}</li>
+                    <li>کد ملی: {{customer.nID}}</li>
+
+                    <li>حوضه فعالیت: {{customer.career}}</li>
+                    
+                    <li>موبایل: {{customer.mobile}}</li>
+                    <li>تلفن: {{customer.tel}}</li>
+                    <li>آدرس: {{customer.address}}</li>
+                    <li>توضیحات: {{customer.note}}</li>
+                    
+                  </ul>
+                
+
+                  
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">بستن</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end modal-->
+          <a class="btn  me-1 py-0 px-1" href="{% url 'edit_customer' customer.id  %}" > <i class="fa fa-edit fa-lg text-warning "></i></a>
+          
+          
+          <button type="button" class="btn me-1 py-0 px-1"  data-bs-toggle="modal" data-bs-target="#delete{{customer.id}}"> <i class="fa fa-trash fa-lg text-danger "></i></button>
+      
+          <!--modal delete-->
+          <div class="modal" id="delete{{customer.id}}" tabindex="-1" aria-labelledby="myModalLabel2" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">مشتری حقیقی: {{ customer.name }} {{customer.family}} </h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"></span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <h5>آیا مطمئن هستید که مشتری زیر را حذف کنید ؟ </h5>
+                  <ul class="list-unstyled">
+                    <li>نام مشتری: {{customer.name}} {{customer.family}}</li>
+                    <li>کد ملی: {{customer.nID}}</li>                  
+                  </ul>
+                
+
+                  
+                </div>
+                <div class="modal-footer">
+                  <form action="{% url 'delete_customer' customer.id %}" method="post">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-danger">حذف</button>
+
+                  </form>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">بستن</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end modal-->
+        </td>
+        
+    
+    
+    
+      </tr>
+    
+    
+    
+    
+    
+    
+    
+      {% endfor %}
+    </tbody>
+    {% if page_obj.has_other_pages %}
+    <ul class="pagination">
+      {% for page in page_obj.paginator.page_range %}
+        <li><a href="?page={{ page }}">{{ page }}</a></li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    </div>
+    {%else%}
+    <br>
+    <h4>مشتری برای نمایش موجود نیست</h4>
+    {%endif%}
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+{% endblock %}
